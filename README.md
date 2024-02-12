@@ -38,3 +38,21 @@ To deploy the kafka data generator use the following commands
 ```
 docker run -d -p 9999:9999 imply/datagen:latest
 ```
+
+## Tuning Druid Related changes
+
+
+## Application Features
+[] Give which type of ingestion job to be performed or all
+[] Give the number of iterations to do for the queries to be ran against all the datasources.
+[] How many replicas are need for each of the datasource.
+
+### How the application will work
+
+ - `ddgen ingest [kafka | hadoop | file | all]`
+   This will perform the ingestion and will keep a state of the application locally, so that if there is any issue then the application will start up at the same point
+   All the pre requisites for the ingestion should already be in place otherwise there will be errors which running this command.
+ - `ddgen query [--iterations=<number of iterations> --datasource=<datasource>]`
+   This will execute the queries against the datasource and will keep a state of the application locally, so that if there is any issue then the application will start up at the same point
+ - `ddgen cron [--datasource=<datasource>]`
+   This will output a cron expression for you to use in your crontab
